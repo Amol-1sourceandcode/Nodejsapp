@@ -1,0 +1,29 @@
+trigger:
+- main
+
+pool:
+  name: Default
+  # or your pool name where your self-hosted agent is
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.x'  # Node.js version
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install -g http-server
+  displayName: 'Install http-server'
+
+- script: |
+    # Just to verify files are here
+    ls -la
+
+    # You can start the server for testing (optional)
+    # http-server -p 8080 &
+  displayName: 'Prepare static site'
+
+# Optional: You can add a Publish build artifact step
+- publish: $(Build.SourcesDirectory)
+  artifact: static-site
+  displayName: 'Publish static site artifact'
