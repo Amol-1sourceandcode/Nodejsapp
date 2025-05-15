@@ -16,12 +16,8 @@ steps:
   displayName: 'Install http-server'
 
 - script: |
-    # Just to verify files are here
-    ls -la
-
-    # You can start the server for testing (optional)
-    # http-server -p 8080 &
-  displayName: 'Prepare static site'
+    dir
+  displayName: 'Prepare static site (Windows)'
 
 # Optional: You can add a Publish build artifact step
 - publish: $(Build.SourcesDirectory)
